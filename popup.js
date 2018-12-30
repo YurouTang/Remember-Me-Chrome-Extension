@@ -55,6 +55,11 @@ $(function() {
           result.websites.push(tab.url);
           $("#web").append("<li>" + tab.url + "</li>");
         })
+        chrome.storage.local.set({websites: result.websites}, function() {
+          chrome.storage.local.get('websites', function (result) {
+              console.log(result.websites);
+          });
+        })
       });
     })
   })
