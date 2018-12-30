@@ -64,4 +64,13 @@ $(function() {
     })
   })
 
+  $('#openAll').click(function() {
+    chrome.storage.local.get('websites', function(result) {
+      resultArray = result.websites;
+      resultArray.forEach(function(link) {
+        chrome.tabs.create({url:link});
+      })
+    })
+  })
+
 });
