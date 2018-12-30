@@ -21,6 +21,6 @@
     "persistent": false
   },
 
-  "permissions": ["storage"]
+  "permissions": ["storage", "tabs"]
 
 }

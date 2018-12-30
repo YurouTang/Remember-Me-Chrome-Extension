@@ -38,10 +38,25 @@ $(function() {
     });
   })
 
+
   $('#clear').click(function() {
     console.log("cleared");
     chrome.storage.local.set({websites: []}, function() {
       $("#web").text("");
     });
   })
+
+
+  $('#addAll').click(function() {
+    chrome.storage.local.get('websites', function(result) {
+      chrome.tabs.query({status: "complete"}, function(resultArray) {
+        console.log(resultArray);
+        resultArray.forEach(function(tab) {
+          result.websites.push(tab.url);
+          $("#web").append("<li>" + tab.url + "</li>");
+        })
+      });
+    })
+  })
+
 });
