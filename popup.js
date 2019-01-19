@@ -73,4 +73,22 @@ $(function() {
     })
   })
 
+  $('ol').click(function(e) {
+    console.log("hello");
+    console.log($(e.target).index());
+    if (confirm('Would you like to remove link number ' + ($(e.target).index() + 1) + ' from the list?')) {
+        // Remove from array
+        chrome.storage.local.get('websites', function(result) {
+          result.websites.splice($(e.target).index(), 1);
+          chrome.storage.local.set({websites: result.websites}, function() {
+              // Remove from html list
+              $("#web li").eq($(e.target).index()).remove();
+          })
+        })
+        console.log("Removed!");
+    } else {
+        // Do nothing!
+    }
+  })
+
 });
